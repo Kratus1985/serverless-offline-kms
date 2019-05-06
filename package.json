@@ -1,0 +1,23 @@
+{
+  "name": "serverless-offline-kms",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MacnoC/serverless-offline-kms.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MacnoC/serverless-offline-kms/issues"
+  },
+  "homepage": "https://github.com/MacnoC/serverless-offline-kms#readme",
+  "dependencies": {
+    "hapi": "^16.7.0",
+    "hapi-cors-headers": "^1.0.3"
+  }
+}
