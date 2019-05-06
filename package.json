@@ -15,9 +15,5 @@
   "bugs": {
     "url": "https://github.com/MacnoC/serverless-offline-kms/issues"
   },
-  "homepage": "https://github.com/MacnoC/serverless-offline-kms#readme",
-  "dependencies": {
-    "hapi": "^16.7.0",
-    "hapi-cors-headers": "^1.0.3"
-  }
+  "homepage": "https://github.com/MacnoC/serverless-offline-kms#readme"
 }
