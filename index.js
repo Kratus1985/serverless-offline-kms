@@ -1,4 +1,4 @@
-const Hapi = require('hapi');
+const Hapi = require('@hapi/hapi');
 
 class KmsOffline {
     constructor(serverless, options) {
@@ -21,36 +21,36 @@ class KmsOffline {
     }
 
     buildServer() {
-        this.server = new Hapi.Server();
-        this.server.connection({port: 4001, host: 'localhost'});
+        this.server = Hapi.Server({port: 4001, host: 'localhost'});
 
         this.server.route({
             method: 'POST',
             path: '/',
             config: {
-                handler: (req, reply) => {
-                    const { payload } = req;
+                handler: (req) => {
+                    return new Promise((resolve) => {
+                        const request = req.raw.req;
 
-                    let body = '';
-                    payload.on('data', (chunk) => {
-                        body += chunk;
-                    });
+                        let body = '';
+                        request.on('data', (chunk) => {
+                            body += chunk;
+                        });
 
-                    payload.on('end', () => {
-                        const payload = JSON.parse(body);
-                        reply({
-                            Plaintext: payload.CiphertextBlob
+                        request.on('end', () => {
+                            const payload = JSON.parse(body);
+                            resolve({
+                                Plaintext: payload.CiphertextBlob
+                            });
                         });
                     });
                 },
                 payload: {
                     output: 'stream',
-                    parse: false
+                    parse: true
                 }
             }
         });
-
-        this.server.start().then(() => this.log(`Offline Kms Server listening on ${this.server.info.uri}`));
+        this.server.start();
     }
 }
 
